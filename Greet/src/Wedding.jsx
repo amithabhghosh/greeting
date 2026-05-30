@@ -2,9 +2,51 @@ import { useParams } from "react-router-dom";
 
 import heroImage from "../public/image1.jpeg";
 import Gallery from "./Gallery";
-
+import { useEffect, useState } from "react";
+import gallery1 from "../public/image1.jpeg";
+import gallery2 from "../public/image2.jpeg";
+import gallery3 from "../public/image3.jpeg";
+import gallery4 from "../public/image4.jpeg";
 function WeddingGreeting() {
   const { name } = useParams();
+
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const images = [
+      heroImage,
+    gallery1,
+      gallery2,
+      gallery3,
+      gallery4,
+    ];
+
+    let loadedCount = 0;
+
+    images.forEach((src) => {
+      const img = new Image();
+
+      img.src = src;
+
+      img.onload = () => {
+        loadedCount++;
+
+        if (loadedCount === images.length) {
+          setLoading(false);
+        }
+      };
+    });
+  }, []);
+
+
+  if (loading) {
+    return (
+      <div className="loader">
+        <h2>Loading Memories...</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="app-container">
