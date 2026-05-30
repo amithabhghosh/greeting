@@ -43,7 +43,7 @@ function WeddingGreeting() {
   if (loading) {
     return (
       <div className="loader">
-        <h2>Loading Memories...</h2>
+        <h2>Please Wait...</h2>
       </div>
     );
   }
